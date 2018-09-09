@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="2023" started-at="2017-12-04T15:26:21Z" finished-at="2017-12-04T15:26:23Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="2023" started-at="2017-12-04T15:26:21Z" finished-at="2017-12-04T15:26:23Z">
+      <class name="rest.twitterAPi.testing.GetTwittes">
+        <test-method status="PASS" signature="getFirstThreeTwitts()[pri:0, instance:rest.twitterAPi.testing.GetTwittes@66a3ffec]" name="getFirstThreeTwitts" duration-ms="2000" started-at="2017-12-04T20:56:21Z" finished-at="2017-12-04T20:56:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getFirstThreeTwitts -->
+      </class> <!-- rest.twitterAPi.testing.GetTwittes -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
