@@ -7,11 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.testng.annotations.Test;
-
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import static io.restassured.RestAssured.*;
+import static org.testng.Assert.assertEquals;
 
 public class UpdateComment {
 	
@@ -23,14 +22,12 @@ public class UpdateComment {
 		// Login JIRA
 		
 		RestAssured.baseURI = "http://localhost:8080";
-		Response  res = given().
-				contentType(ContentType.JSON).
+		Response  res = given().contentType(ContentType.JSON).
 			body(requestBody).
-			when().
-				post("/rest/auth/1/session").
-		 then().assertThat().statusCode(200).
+			when().	post("/rest/auth/1/session")
+			.then().assertThat().statusCode(200).
 		
-		extract().response();
+		     extract().response();
 		
 		String respose = res.asString();
 		
@@ -59,26 +56,23 @@ public class UpdateComment {
 		System.out.println("Comment Added");
 		
 		//Update Comment
+		
 		String UpdateCmntBody = generateString("UpdateCmnt.json");
-		Response  updateCmntResponse = given().
-				contentType(ContentType.JSON).
-				header("cookie", "JSESSIONID=" + sessionID+"").
-			body(UpdateCmntBody).
-			when().
-				put("/rest/api/2/issue/RAT-9/comment/" +cmntID+"").
-		 then().assertThat().statusCode(200).log().all().
+		Response  updateCmntResponse = given().contentType(ContentType.JSON)
+				.header("cookie", "JSESSIONID=" + sessionID+"")
+				.body(UpdateCmntBody)
+				.when().put("/rest/api/2/issue/RAT-9/comment/" +cmntID+"").
+		         then().assertThat().statusCode(200).log().all().
 		
 		 extract().response();
 
 		/*JsonPath addCmntResJson = new JsonPath(addCmntResponse.asString());
 		String cmntID = jsonRes.getString("id");*/
 		
-		given().
-		contentType(ContentType.JSON).
-		header("cookie", "JSESSIONID=" + sessionID+"").
-		when().
-		delete("/rest/api/2/issue/RAT-9/comment/" +cmntID+"").
-          then().assertThat().statusCode(204).log().all();
+		given().contentType(ContentType.JSON)
+		.header("cookie", "JSESSIONID=" + sessionID+"")
+		.when().delete("/rest/api/2/issue/RAT-9/comment/" +cmntID+"")
+		.then().assertThat().statusCode(204).log().all();
 		
 	}
 	
